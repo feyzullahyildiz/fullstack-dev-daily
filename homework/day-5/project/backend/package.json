@@ -1,0 +1,13 @@
+{
+  "name": "task-management-backend",
+  "version": "1.0.0",
+  "description": "Node.js core principles and initial API setup",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
