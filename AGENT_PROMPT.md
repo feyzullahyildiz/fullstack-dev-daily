@@ -41,15 +41,66 @@ Her konu için aynı mantık: `CURRICULUM.md`'deki gün sayısına ulaşıldıys
 
 ---
 
-## ADIM 3 — ÖDEV DOSYASINI OLUŞTUR
+## ADIM 3 — DOSYALARI OLUŞTUR
 
-`homework/day-{N}/homework.md` dosyasını aşağıdaki şablona göre oluştur.
+Her gün için şu yapıyı oluştur:
 
-**Kritik — İlk satır her zaman tam olarak bu formatta olmalı:**
 ```
-# Day {N} — {FRONTEND_KONU} | {BACKEND_VEYA_DEVOPS_KONU}
+homework/
+└── day-{N}/
+    ├── homework.md
+    └── project/
+        ├── README.md
+        ├── frontend/
+        └── backend/
 ```
-Agent bir sonraki çalıştırıldığında bu satırı parse edecek. Formatı bozma.
+
+### Klasör kuralları
+
+**`frontend/`** — Next.js uygulaması. Day 1'de `npx create-next-app` iskelet yapısı kurulur,
+sonraki günlerde bu yapı üzerine ekleme yapılır. Her gün yalnızca değişen/eklenen dosyaları yaz.
+
+**`backend/`** — Node/Express API. Backend konuları başladığında oluşturulur.
+DevOps günlerinde `frontend/` ve `backend/` birlikte containerize edilir.
+
+**`project/README.md`** — Her gün güncellenir. Şu bilgileri içerir:
+
+```markdown
+# Day {N} — Project Notes
+
+## Bu Gün Ne Yapıldı
+
+**Frontend ({FRONTEND_KONU}):**
+- {eklenen veya değiştirilen dosya/özellik}
+- {eklenen veya değiştirilen dosya/özellik}
+
+**{Backend/DevOps} ({KONU}):**
+- {eklenen veya değiştirilen dosya/özellik}
+
+## Klasör Yapısı
+
+{O güne kadar oluşan proje yapısını tree formatında yaz}
+
+## Önceki Günden Farkı
+
+{Day 1 ise "İlk kurulum". Değilse önceki güne göre ne değişti, ne eklendi.}
+
+## Nasıl Çalıştırılır
+
+```bash
+{kurulum ve çalıştırma komutları}
+```
+
+## Notlar
+
+{Dikkat edilmesi gerekenler, bilinen eksikler, sonraki gün için ipucu.}
+```
+
+### Proje sürekliliği
+
+Agent her gün önceki günün `project/` içeriğini okur.
+Bu günkü ödev onun devamı olarak inşa edilir — baştan yazmak yerine var olanı genişlet.
+Hangi dosyaların değiştiğini `project/README.md`'de açıkça belirt.
 
 ---
 
@@ -83,8 +134,7 @@ Gerçekçi ve teknik ol. Yüzeysel geçme. 400-600 kelime arası.}
 
 ### 💻 Ödev
 
-{Görevin açıklaması. Proje bağlamında ne ekleneceğini veya değiştirileceğini yaz.
-"Task Management" projesine katkı sağlayacak şekilde tasarla.
+{Görevin açıklaması. Task Management projesinin frontend/ klasörüne ne ekleneceğini yaz.
 Görevi net talimatlarla yaz — öğrenci ne yapacağını tam bilmeli.}
 
 **Yapılacaklar:**
@@ -93,23 +143,23 @@ Görevi net talimatlarla yaz — öğrenci ne yapacağını tam bilmeli.}
 - [ ] {adım}
 
 **Beklenen çıktı:**
-{Ödev tamamlandığında ne görünmeli / ne çalışmalı. Örnek kod yapısı veya beklenen davranış.}
+{Ödev tamamlandığında ne görünmeli / ne çalışmalı.}
 
-**Örnek kod (başlangıç noktası veya referans):**
+**İskelet kod (`project/frontend/` içinde oluşturulan dosya):**
 ```{dil}
-{kod}
+{kod — çalışan değil, yönlendirici ve eksik bırakılmış}
 ```
 
 ---
 
 ### 🎤 Mülakat Sorusu
 
-**Soru:** {O günün frontend konusuyla ilgili gerçek mülakat sorusu. Hem teorik hem pratik olabilir.}
+**Soru:** {Gerçek mülakat sorusu — teorik veya pratik.}
 
 <details>
 <summary>Cevap için tıkla</summary>
 
-{Detaylı cevap. Sadece tanım değil — neden, ne zaman, alternatifi ne, trade-off'ları neler.}
+{Detaylı cevap. Tanım değil — neden, ne zaman, trade-off'lar.}
 
 </details>
 
@@ -119,8 +169,8 @@ Görevi net talimatlarla yaz — öğrenci ne yapacağını tam bilmeli.}
 
 ### 📖 Okuma
 
-{Konunun açıklaması. Docker bilmiyorsa sıfırdan anlat. Backend konularında HTTP/REST/Node.js
-bağlamını kur. Teknik ve pratik ol. 300-500 kelime arası.}
+{Konunun açıklaması. Docker için sıfırdan anlat. Backend için HTTP/Node bağlamını kur.
+Teknik ve pratik ol. 300-500 kelime arası.}
 
 **Dikkat edilecekler:**
 - {önemli nokta}
@@ -134,8 +184,8 @@ bağlamını kur. Teknik ve pratik ol. 300-500 kelime arası.}
 
 ### 💻 Ödev
 
-{Görevin açıklaması. Mümkünse "Task Management" projesiyle ilişkilendir.
-Docker konularında sıfırdan yönlendir — hiç bilmiyor.}
+{Görevin açıklaması. Task Management projesinin backend/ veya root klasörüne ne ekleneceğini yaz.
+Docker konularında frontend/ ve backend/ birlikte ele alınır.}
 
 **Yapılacaklar:**
 - [ ] {adım}
@@ -145,16 +195,16 @@ Docker konularında sıfırdan yönlendir — hiç bilmiyor.}
 **Beklenen çıktı:**
 {Ne görünmeli / ne çalışmalı.}
 
-**Örnek kod / config:**
+**İskelet kod (`project/backend/` veya `project/` içinde oluşturulan dosya):**
 ```{dil}
-{kod veya config}
+{kod veya config — eksik bırakılmış}
 ```
 
 ---
 
 ### 🎤 Mülakat Sorusu
 
-**Soru:** {O günün backend/devops konusuyla ilgili mülakat sorusu.}
+**Soru:** {Backend/devops konusuyla ilgili mülakat sorusu.}
 
 <details>
 <summary>Cevap için tıkla</summary>
@@ -167,8 +217,7 @@ Docker konularında sıfırdan yönlendir — hiç bilmiyor.}
 
 ## 🔁 Tekrar: Geçmiş Konular
 
-{İlk günse bu bölümü atla. Değilse geçmiş frontend veya backend/devops konularından
-1-2 kısa soru ekle. Teorik ya da "şunu açıkla" formatında olabilir.}
+{İlk günse bu bölümü atla. Değilse geçmiş konulardan 1-2 kısa soru ekle.}
 
 | # | Soru | Konu |
 |---|------|------|
@@ -192,35 +241,36 @@ Docker konularında sıfırdan yönlendir — hiç bilmiyor.}
 
 ## ÖDEV TASARIM KURALLARI
 
-**Proje sürekliliği:** Ödevlerin büyük çoğunluğu "Task Management" uygulaması üzerine inşa edilir.
-Her yeni konu bu projeye bir şey ekler veya var olanı refactor eder.
-Bağımsız ödevler yalnızca konunun projeyle ilişkilendirilemediği durumlarda kullanılır.
+**Proje yapısı:** `project/frontend/` ve `project/backend/` ayrı klasörler olarak büyür.
+Her gün yalnızca o gün değişen/eklenen dosyalar yazılır — tüm proje her gün baştan yazılmaz.
+DevOps günlerinde `Dockerfile`, `docker-compose.yml` proje root'una (`project/`) eklenir.
 
-**Zorluk:** Ödevler gerçekten düşündürmeli. Bazıları 2-3 saat sürebilir — bu normaldir.
+**Zorluk:** Ödevler gerçekten düşündürmeli. 2-3 saat sürebilir — normaldir.
 Araştırma gerektiren, dökümantasyon okutacak görevler tercih edilir.
 
-**Örnek kod:** Her ödevde ya başlangıç noktası ya da beklenen çıktı referansı olarak kod bulunur.
-Kodu direkt yapıştırınca çalışan "çözüm" verme — yönlendirici, eksik bırakılmış kod ver.
+**İskelet kod:** Yönlendirici, eksik bırakılmış kod ver. Direkt çalışan çözüm verme.
 
-**Mülakat soruları:** Gerçekçi olsun. "useState nedir" değil,
-"Server Component içinde state tutmak neden mümkün değil, bunu nasıl çözersin?" tarzında.
+**Mülakat soruları:** Gerçekçi olsun.
+"useState nedir" değil, "Server Component içinde state tutmak neden mümkün değil?" tarzında.
 
 **Kaynaklar:** Her ödevde mutlaka kaynak ver.
-Next.js ve React için resmi dökümantasyon öncelikli. Ardından kentcdodds.com, tkdodo.eu (React Query),
-Josh W Comeau, Matt Pocock (TypeScript) gibi güvenilir kaynaklar.
+Next.js/React → resmi docs öncelikli.
+Ardından: kentcdodds.com, tkdodo.eu, Josh W Comeau, Matt Pocock (TypeScript).
 
-**Next.js Caching (F04):** Bu konu her versiyonda değişiyor — derine girme.
-"Şu an nasıl çalıştığını bil, dökümantasyonu oku alışkanlığı edin" formatında tut.
+**Next.js Caching (F04):** Derine girme. "Farkında ol, dökümantasyonu oku alışkanlığı edin" formatında tut.
 
-**Docker konuları:** Öğrenci Docker'ı hiç bilmiyor.
-D01'den itibaren sıfırdan anlat. Terim kullanmadan önce tanımla.
+**Docker konuları:** Öğrenci hiç bilmiyor. D01'den sıfırdan anlat, terim kullanmadan önce tanımla.
 
-**Backend konuları:** SQL bilgisi var ama eskimiş.
-Tekrar konularında "hatırlıyorsundur ama..." formatında geç, sıfırdan anlatma.
+**Backend konuları:** SQL bilgisi var ama eskimiş. "Hatırlıyorsundur ama..." formatında geç.
 
 ---
 
 ## DOKUNULMAYACAK DOSYALAR
 
 `README.md`, `CURRICULUM.md`, `ADD_TOPICS.md` dosyalarını **asla değiştirme.**
-Sadece `homework/day-{N}/homework.md` oluşturursun.
+
+Her gün yalnızca şunları oluşturursun:
+- `homework/day-{N}/homework.md`
+- `homework/day-{N}/project/README.md`
+- `homework/day-{N}/project/frontend/` içindeki değişen/eklenen dosyalar
+- `homework/day-{N}/project/backend/` içindeki değişen/eklenen dosyalar (backend konusu başladığında)
