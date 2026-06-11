@@ -256,6 +256,7 @@ Araştırma gerektiren, dökümantasyon okutacak görevler tercih edilir.
 **Kaynaklar:** Her ödevde mutlaka kaynak ver.
 Next.js/React → resmi docs öncelikli.
 Ardından: kentcdodds.com, tkdodo.eu, Josh W Comeau, Matt Pocock (TypeScript).
+**Önemli:** Sağlanan linklerin aktif ve doğru olduğunu mutlaka kontrol et. Kırık veya yanlış yönlendirilmiş link vermemeye özen göster.
 
 **Next.js Caching (F04):** Derine girme. "Farkında ol, dökümantasyonu oku alışkanlığı edin" formatında tut.
 
